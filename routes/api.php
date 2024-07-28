@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\Admin\CategoryController;
 use App\Http\Controllers\Api\V1\Admin\ProductController;
+use App\Http\Controllers\Api\V1\Admin\ProductImportController;
 use App\Http\Controllers\Api\V1\Auth\AuthenticationController;
 use App\Http\Controllers\Api\V1\Auth\SocialiteAuthController;
 use App\Http\Middleware\AdminMiddleware;
@@ -43,5 +44,7 @@ Route::group(['prefix' => 'v1/', 'middleware' => ['auth:api']], function () {
             Route::put('/{id}', [ProductController::class, 'update']);
             Route::delete('/{id}', [ProductController::class, 'destroy']);
         });
+
+        Route::post('products/import', [ProductImportController::class, 'import']);
     });
 });
