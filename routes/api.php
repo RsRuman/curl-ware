@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Admin\CategoryController;
+use App\Http\Controllers\Api\V1\Admin\ProductController;
 use App\Http\Controllers\Api\V1\Auth\AuthenticationController;
 use App\Http\Controllers\Api\V1\Auth\SocialiteAuthController;
 use App\Http\Middleware\AdminMiddleware;
@@ -32,6 +33,15 @@ Route::group(['prefix' => 'v1/', 'middleware' => ['auth:api']], function () {
             Route::post('/', [CategoryController::class, 'store']);
             Route::put('/{id}', [CategoryController::class, 'update']);
             Route::delete('/{id}', [CategoryController::class, 'destroy']);
+        });
+
+        # Product
+        Route::group(['prefix' => 'products'], function () {
+            Route::get('/', [ProductController::class, 'index']);
+            Route::get('/{id}', [ProductController::class, 'show']);
+            Route::post('/', [ProductController::class, 'store']);
+            Route::put('/{id}', [ProductController::class, 'update']);
+            Route::delete('/{id}', [ProductController::class, 'destroy']);
         });
     });
 });
