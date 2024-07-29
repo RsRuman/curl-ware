@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\Admin\ProductController;
 use App\Http\Controllers\Api\V1\Admin\ProductImportController;
 use App\Http\Controllers\Api\V1\Auth\AuthenticationController;
 use App\Http\Controllers\Api\V1\Auth\SocialiteAuthController;
+use App\Http\Controllers\Api\V1\Customer\OrderController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -52,5 +53,12 @@ Route::group(['prefix' => 'v1/', 'middleware' => ['auth:api']], function () {
         });
 
         Route::post('products/import', [ProductImportController::class, 'import']);
+    });
+
+    # Customer Routes
+    Route::group(['prefix' => 'orders'], function () {
+        Route::get('/', [OrderController::class, 'index']);
+        Route::get('/{id}', [OrderController::class, 'show']);
+        Route::post('/', [OrderController::class, 'create']);
     });
 });

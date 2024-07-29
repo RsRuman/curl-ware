@@ -4,11 +4,13 @@ namespace App\Providers;
 
 use App\Interfaces\AuthenticationRepositoryInterface;
 use App\Interfaces\CategoryRepositoryInterface;
+use App\Interfaces\OrderRepositoryInterface;
 use App\Interfaces\ProductImportInterface;
 use App\Interfaces\ProductRepositoryInterface;
 use App\Interfaces\SocialiteAuthRepositoryInterface;
 use App\Repositories\AuthenticationRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\SocialiteAuthRepository;
 use App\Services\ProductImportService;
@@ -26,5 +28,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(ProductImportInterface::class, ProductImportService::class);
+        $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
     }
 }
