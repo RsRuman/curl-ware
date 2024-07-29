@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'v1/', 'middleware' => 'api'], function () {
     Route::post('sign-up', [AuthenticationController::class, 'signUp']);
     Route::post('login', [AuthenticationController::class, 'login']);
+
+    #Products
+    Route::group(['prefix' => 'products'], function () {
+        Route::get('/', [\App\Http\Controllers\Api\V1\Customer\ProductController::class, 'index']);
+        Route::get('/{id}', [\App\Http\Controllers\Api\V1\Customer\ProductController::class, 'show']);
+    });
 });
 
 # Social login
